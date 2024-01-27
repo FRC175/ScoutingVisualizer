@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import { DataGrid } from '@mui/x-data-grid';
-import { makeStyles } from '@mui/styles';
+import { Dialog, DialogContent, DialogTitle, Typography, DialogActions, Button } from '@mui/material';
+import TeamDetailDialog from './TeamDetailDialog';
 
 const columns = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -35,12 +35,6 @@ const columns = [
   },
 ];
 
-const useStyles = makeStyles({
-    firstStyle: {
-        backgroundColor: props => props.backgroundColor
-    }
-})
-
 const rows = [
   { id: 1, lastName: 'Snow', firstName: 'Jon', age: 14 },
   { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 31 },
@@ -53,22 +47,37 @@ const rows = [
   { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
 ];
 
-export default function DataGridDemo({children, ...props}) {
-    const { firstStyle } = useStyles(props);
-    return (
-        <DataGrid
-            rows={rows}
-            columns={columns}
-            checkboxSelection={false}
-            className={`${firstStyle}`}
-            initialState={{
+export default function TeamsTable() {
+
+  const [open, setOpen] = React.useState(false);
+  const [detailTeam, setDetailTeam] = React.useState(0);
+
+  const handleClose = () => {
+    setOpen(false);
+  }
+  
+  const handleRowClick = (params, event, details) => {
+    setOpen(true)
+    setDetailTeam(params.row.age);
+  }
+
+  return (
+    <>
+      <DataGrid
+          rows={rows}
+          columns={columns}
+          checkboxSelection={false}
+          initialState={{
             pagination: {
                 paginationModel: {
                 pageSize: 15,
                 },
             },
-            }}
-            pageSizeOptions={[5]}
-        />
-    );
+          }}
+          pageSizeOptions={[5]}
+          onRowClick={handleRowClick}
+      />
+      <TeamDetailDialog team={detailTeam} open={open} onClose={handleClose}/>
+    </>
+  );
 }
