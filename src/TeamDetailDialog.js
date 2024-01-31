@@ -3,15 +3,6 @@ import { Dialog, DialogContent, DialogTitle, Typography, DialogActions, Button, 
 import { grey } from '@mui/material/colors';
 import Draggable from 'react-draggable';
 
-const style = {
-    py: 0,
-    width: '100%',
-    borderRadius: 2,
-    border: '1px solid',
-    borderColor: 'divider',
-    // backgroundColor: grey[400],
-  };
-
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
   });
