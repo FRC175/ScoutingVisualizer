@@ -130,18 +130,18 @@ export default function TeamsTable() {
 
   return (
     <>
-      <Box sx={{height: '100%', width: '50%'}}>
+      <Box sx={{height: '100%', width: '100%'}}>
         <DataGrid
           rows={rows}
           columns={columns}
           sx={{
-            boxShadow: 20,
+            // boxShadow: 20,
             border: 2,
-            borderColor: 'primary.main',
-            '& .MuiDataGrid-cell:hover': {
-              color: 'primary.main',
-            },
-            accentColor: 'text.primary'
+            // borderColor: 'primary.main',
+            // '& .MuiDataGrid-cell:hover': {
+            //   color: 'primary.main',
+            // },
+            // accentColor: 'text.primary'
             // backgroundColor: 'background.default',
             // accentColor: 'primary.main'
           }}
