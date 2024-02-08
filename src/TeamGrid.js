@@ -5,15 +5,15 @@ import MatchDetail from './MatchDetail';
 const TeamGrid = ({ teamNum }) => {
 
     const matches = [
-        {matchNum: 10, scoreRed: 50, scoreBlue: 110},
-        {matchNum: 15, scoreRed: 150, scoreBlue: 90},
-        {matchNum: 15, scoreRed: 150, scoreBlue: 90},
-        {matchNum: 15, scoreRed: 150, scoreBlue: 90},
-        {matchNum: 15, scoreRed: 150, scoreBlue: 90},
-        {matchNum: 15, scoreRed: 150, scoreBlue: 90},
-        {matchNum: 15, scoreRed: 150, scoreBlue: 90},
-        {matchNum: 15, scoreRed: 150, scoreBlue: 90},
-        {matchNum: 15, scoreRed: 150, scoreBlue: 90},
+        {matchNum: 1, scoreRed: 50, scoreBlue: 110,  teamsRed: [175, 189, 230], teamsBlue: [1, 189, 230]},
+        {matchNum: 10, scoreRed: 150, scoreBlue: 90, teamsRed: [900, 189, 230], teamsBlue: [175, 189, 230]},
+        {matchNum: 26, scoreRed: 150, scoreBlue: 90, teamsRed: [175, 189, 230], teamsBlue: [190, 189, 230]},
+        {matchNum: 37, scoreRed: 150, scoreBlue: 90, teamsRed: [800, 189, 230], teamsBlue: [175, 189, 230]},
+        {matchNum: 39, scoreRed: 150, scoreBlue: 90, teamsRed: [175, 189, 230], teamsBlue: [1000, 189, 230]},
+        {matchNum: 41, scoreRed: 150, scoreBlue: 90, teamsRed: [175, 189, 230], teamsBlue: [200, 189, 230]},
+        {matchNum: 52, scoreRed: 150, scoreBlue: 90, teamsRed: [100, 189, 230], teamsBlue: [175, 189, 230]},
+        {matchNum: 61, scoreRed: 150, scoreBlue: 90, teamsRed: [80, 189, 230], teamsBlue: [175, 189, 230]},
+        {matchNum: 67, scoreRed: 150, scoreBlue: 90, teamsRed: [2, 189, 230], teamsBlue: [175, 189, 230]},
     ]
 
     return (
@@ -21,7 +21,7 @@ const TeamGrid = ({ teamNum }) => {
             <List>
             {matches.map((match, index) => (
                 <ListItem key={index}>
-                    <MatchDetail match={match} />
+                    <MatchDetail match={match} teamNum={teamNum} />
                 </ListItem>
             ))}
             </List>

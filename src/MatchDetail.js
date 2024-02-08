@@ -5,6 +5,11 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Accordion from '@mui/material/Accordion';
+import AccordionActions from '@mui/material/AccordionActions';
+import AccordionSummary from '@mui/material/AccordionSummary';
+import AccordionDetails from '@mui/material/AccordionDetails';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const useStyles = makeStyles({
     root: {
@@ -18,12 +23,21 @@ const useStyles = makeStyles({
     title: {
         fontSize: 14,
     },
-    pos: {
-        marginBottom: 12,
+    score: {
+        fontSize: "20pt",
+        textAlign: "center",
+        marginTop: "10px"
     },
+    teams: {
+        textAlign: "center",
+    }
 });
 
-const MatchDetail = ({match}) => {
+
+const MatchDetail = ({match, teamNum}) => {
+
+    const isRed = match.teamsRed.includes(teamNum)
+    const wonMatch = (isRed && match.scoreRed > match.scoreBlue) || (!isRed && match.scoreBlue > match.scoreRed)
 
     const classes = useStyles();
     const bull = <span className={classes.bullet}>•</span>;
@@ -31,23 +45,30 @@ const MatchDetail = ({match}) => {
     return (
         <Card className={classes.root} variant="outlined">
             <CardContent>
-                <Typography className={classes.title} color="textSecondary" gutterBottom>
-                Word of the Day
-                </Typography>
                 <Typography variant="h5" component="h2">
-                be{bull}nev{bull}o{bull}lent
+                Match {match.matchNum} ({wonMatch ? "W" : "L"})
                 </Typography>
-                <Typography className={classes.pos} color="textSecondary">
-                {match.matchNum}
+                <Typography className={classes.score}>
+                <span style={{color: 'red'}}>{match.scoreRed}</span> - <span style={{color: 'blue'}}>{match.scoreBlue}</span>
                 </Typography>
-                <Typography variant="body2" component="p">
-                well meaning and kindly.
-                <br />
-                {'"a benevolent smile"'}
+                <Typography className={classes.teams}>
+                <span style={{color: 'red'}}>{match.teamsRed[0]} - {match.teamsRed[1]} - {match.teamsRed[2]}</span> | <span style={{color: 'blue'}}>{match.teamsBlue[0]} - {match.teamsBlue[1]} - {match.teamsBlue[2]}</span>
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Learn More</Button>
+                <Accordion>
+                    <AccordionSummary
+                        expandIcon={<ExpandMoreIcon />}
+                        aria-controls="panel1-content"
+                        id="panel1-header"
+                    >
+                    See More (: Silly
+                    </AccordionSummary>
+                    <AccordionDetails>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
+                        malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    </AccordionDetails>
+                </Accordion>
             </CardActions>
         </Card>
     )

@@ -24,20 +24,19 @@ const themeDark = createTheme({
 
 const Item = styled(Paper)(({ themeDark }));
 
-
-
 export default function App() {
+  
   return (
     <div className="App">
       <SillyAppBar />
       <Box>
         <Grid2 container spacing={0}>
-          <Grid2 item xs={12} md={7}>
+          <Grid2 item xs={12} md={9}>
             <Item>
               <TeamsTable/>
             </Item>
           </Grid2>
-          <Grid2 item xs={12} md={5}>
+          <Grid2 item xs={12} md={3}>
             <Item>
               <Box style={{maxHeight: '98vh', overflow: 'auto'}}>
                 <TeamGrid/>
