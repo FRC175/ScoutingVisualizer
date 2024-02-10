@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState, useCallback, Component, useEffect } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,10 +11,24 @@ import QrCodeIcon from '@mui/icons-material/QrCode';
 import QrReader from 'react-qr-scanner';
 import { Dialog } from '@mui/material';
 import QRSilly from './QRSilly';
+import axios from "axios";
 
 export default function SillyAppBar() {
 
-    const [state, setState] = React.useState(false);
+    const [state, setState] = useState(false);
+    const [scan, setScanned] = useState();
+
+    useEffect(() => {
+        console.log("Hit PUT endpoint")
+        axios
+        .put("http://localhost:7070/match", scan)
+        .then(response => {
+            // Handle the response
+        })
+        .catch(error => {
+            // Handle errors
+        });
+    }, []);
     
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -23,6 +37,11 @@ export default function SillyAppBar() {
 
         setState(open);
     };
+
+    const uploadScanData = (j) => {
+        console.log(j);
+        setScanned(j);
+    }
 
     return (
         <>
@@ -50,7 +69,7 @@ export default function SillyAppBar() {
             open={state}
             onClose={toggleDrawer(false)}
         >
-            <QRSilly/>
+            <QRSilly uploadMatchData={uploadScanData}/>
         </Dialog>
         </>
     );
