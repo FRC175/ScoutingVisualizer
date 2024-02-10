@@ -21,10 +21,10 @@ const useStyles = makeStyles({
         transform: 'scale(0.8)',
     },
     title: {
-        fontSize: 14,
+        fontSize: 24,
     },
     score: {
-        fontSize: "20pt",
+        fontSize: "20",
         textAlign: "center",
         marginTop: "10px"
     },
@@ -49,7 +49,9 @@ const MatchDetail = ({match, teamNum}) => {
                 Match {match.matchNum} ({wonMatch ? "W" : "L"})
                 </Typography>
                 <Typography className={classes.score}>
-                <span style={{color: 'red'}}>{match.scoreRed}</span> - <span style={{color: 'blue'}}>{match.scoreBlue}</span>
+                <span style={{fontSize: "20pt"}}>
+                    <span style={{color: 'red'}}>{match.scoreRed}</span> - <span style={{color: 'blue'}}>{match.scoreBlue}</span>
+                </span>
                 </Typography>
                 <Typography className={classes.teams}>
                 <span style={{color: 'red'}}>{match.teamsRed[0]} - {match.teamsRed[1]} - {match.teamsRed[2]}</span> | <span style={{color: 'blue'}}>{match.teamsBlue[0]} - {match.teamsBlue[1]} - {match.teamsBlue[2]}</span>

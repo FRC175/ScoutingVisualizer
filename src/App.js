@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 import { ThemeProvider, createTheme, Box } from '@mui/material';
 import TeamGrid from './TeamGrid';
+import * as React from 'react';
 
 
 const themeDark = createTheme({
@@ -26,6 +27,12 @@ const Item = styled(Paper)(({ themeDark }));
 
 export default function App() {
   
+  const [selectedTeamNum, setSelectedTeamNum] = React.useState(-1)
+
+  const updateSelectedTeam = (teamNum) => {
+    setSelectedTeamNum(teamNum)
+  }
+
   return (
     <div className="App">
       <SillyAppBar />
@@ -33,13 +40,13 @@ export default function App() {
         <Grid2 container spacing={0}>
           <Grid2 item xs={12} md={9}>
             <Item>
-              <TeamsTable/>
+              <TeamsTable onTeamSelected={updateSelectedTeam}/>
             </Item>
           </Grid2>
           <Grid2 item xs={12} md={3}>
             <Item>
               <Box style={{maxHeight: '98vh', overflow: 'auto'}}>
-                <TeamGrid/>
+                <TeamGrid teamNum={selectedTeamNum}/>
               </Box>
             </Item>
           </Grid2>

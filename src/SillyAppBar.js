@@ -7,6 +7,10 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
+import QrCodeIcon from '@mui/icons-material/QrCode';
+import QrReader from 'react-qr-scanner';
+import { Dialog } from '@mui/material';
+import QRSilly from './QRSilly';
 
 export default function SillyAppBar() {
 
@@ -33,7 +37,7 @@ export default function SillyAppBar() {
                         sx={{ mr: 2 }}
                         onClick={toggleDrawer(true)}
                     >
-                        <MenuIcon />
+                        <QrCodeIcon />
                     </IconButton>
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Buzz Scouting App (Hi Silly)
@@ -42,12 +46,13 @@ export default function SillyAppBar() {
                 </Toolbar>
             </AppBar>
         </Box>
-        <Drawer
+        <Dialog
             open={state}
             onClose={toggleDrawer(false)}
         >
-            helloooooooo
-        </Drawer>
+            <QRSilly/>
+        </Dialog>
         </>
     );
+    
 }

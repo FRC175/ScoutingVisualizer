@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 import { Dialog, DialogContent, DialogTitle, Typography, DialogActions, Button, Box } from '@mui/material';
-import TeamDetailDialog from './TeamDetailDialog';
 
 const columns = [
   { field: 'id', headerName: 'Team #', type: 'number', width: 90 },
@@ -73,7 +72,7 @@ const columns = [
 
 const rows = [
   { id: 175, teamName: 'Buzz Robotics', rankingPoints: 80, averageScore: 14, offensivePowerRanking: 17.2, defensivePowerRanking: 1000, averageAutoScore: 3, elo: 1000, teamBasedPowerRanking: 254, carried: 0.54 },
-  { id: 801, teamName: 'Robo Dogs', rankingPoints: 0, averageScore: 131.38, offensivePowerRanking: 14.24, defensivePowerRanking: 10.7, averageAutoScore: 1.23, elo: 97.94, teamBasedPowerRanking: 2193.62200, carried: 0.63 },
+  { id: 230, teamName: 'Robo Dogs', rankingPoints: 0, averageScore: 131.38, offensivePowerRanking: 14.24, defensivePowerRanking: 10.7, averageAutoScore: 1.23, elo: 97.94, teamBasedPowerRanking: 2193.62200, carried: 0.63 },
   { id: 2288, teamName: 'Techno Monarch Butterfly', rankingPoints: 35, averageScore: 86.58, offensivePowerRanking: 14.97, defensivePowerRanking: 19.97, averageAutoScore: 15.66, elo: 337.14, teamBasedPowerRanking: 2728.08200, carried: 0.78 },
   { id: 4163, teamName: 'Bionic Exfectorum', rankingPoints: 35, averageScore: 8.13, offensivePowerRanking: 10.01, defensivePowerRanking: 19.22, averageAutoScore: 25.22, elo: 882.39, teamBasedPowerRanking: 2330.18200, carried: 0.36 },
   { id: 2433, teamName: 'Robo Sea Anemone', rankingPoints: 30, averageScore: 130.13, offensivePowerRanking: 7.21, defensivePowerRanking: 13.53, averageAutoScore: 9.91, elo: 377.42, teamBasedPowerRanking: 2178.44200, carried: 0.58 },
@@ -107,25 +106,16 @@ const rows = [
   { id: 1317, teamName: 'Electro Dogs', rankingPoints: 12, averageScore: 163.38, offensivePowerRanking: 9.82, defensivePowerRanking: 9.81, averageAutoScore: 25.76, elo: 1355.24, teamBasedPowerRanking: 1751.87200, carried: 0.79 },
   { id: 751, teamName: 'Sparko Baboons', rankingPoints: 35, averageScore: 30.04, offensivePowerRanking: 12.7, defensivePowerRanking: 15.74, averageAutoScore: 16.25, elo: 1123.14, teamBasedPowerRanking: 2593.49200, carried: 0.24 },
   { id: 3765, teamName: 'Mecha Baboons', rankingPoints: 13, averageScore: 59.36, offensivePowerRanking: 5.25, defensivePowerRanking: 2.5, averageAutoScore: 28.98, elo: 1272.37, teamBasedPowerRanking: 199.46200, carried: 0.51 },
-  { id: 1653, teamName: 'Techno Tapeworm', rankingPoints: 32, averageScore: 79.23, offensivePowerRanking: 2.05, defensivePowerRanking: 3.65, averageAutoScore: 10.79, elo: 1411.81, teamBasedPowerRanking: 1234.38200, carried: 0.41 },
+  { id: 189, teamName: 'Techno Tapeworm', rankingPoints: 32, averageScore: 79.23, offensivePowerRanking: 2.05, defensivePowerRanking: 3.65, averageAutoScore: 10.79, elo: 1411.81, teamBasedPowerRanking: 1234.38200, carried: 0.41 },
   { id: 1112, teamName: 'Deus Jellyfish', rankingPoints: 37, averageScore: 28.43, offensivePowerRanking: 16.97, defensivePowerRanking: 12.83, averageAutoScore: 15.35, elo: 1615.24, teamBasedPowerRanking: 2551.41200, carried: 0.63 },
   { id: 3891, teamName: 'Bionic Jellyfish', rankingPoints: 31, averageScore: 169.7, offensivePowerRanking: 6.65, defensivePowerRanking: 0.68, averageAutoScore: 10.82, elo: 1193.39, teamBasedPowerRanking: 870.51200, carried: 0.81 },
   { id: 190, teamName: 'Robo Tapeworm', rankingPoints: 32, averageScore: 165.81, offensivePowerRanking: 7.26, defensivePowerRanking: 14.69, averageAutoScore: 23.61, elo: 670.86, teamBasedPowerRanking: 2954.41200, carried: 0.15 },
   { id: 2195, teamName: 'Advance Sea Anemone', rankingPoints: 23, averageScore: 91.7, offensivePowerRanking: 1.32, defensivePowerRanking: 12.03, averageAutoScore: 20.18, elo: 510.22, teamBasedPowerRanking: 337.64200, carried: 0.78 },
 ];
 
-export default function TeamsTable() {
-
-  const [open, setOpen] = React.useState(false);
-  const [detailTeam, setDetailTeam] = React.useState(0);
-
-  const handleClose = () => {
-    setOpen(false);
-  }
-  
+export default function TeamsTable({onTeamSelected}) {  
   const handleRowClick = (params, event, details) => {
-    setOpen(true)
-    setDetailTeam(params.row.id);
+    onTeamSelected(params.row.id);
   }
 
   return (
@@ -157,7 +147,6 @@ export default function TeamsTable() {
           onRowClick={handleRowClick}
         />
       </Box>
-      <TeamDetailDialog team={detailTeam} open={open} onClose={handleClose}/>
     </>
   );
 }
