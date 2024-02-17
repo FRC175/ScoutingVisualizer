@@ -8,12 +8,13 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import Drawer from '@mui/material/Drawer';
 import QrCodeIcon from '@mui/icons-material/QrCode';
+import CachedIcon from '@mui/icons-material/Cached';
 import QrReader from 'react-qr-scanner';
 import { Dialog } from '@mui/material';
 import QRSilly from './QRSilly';
 import axios from "axios";
 
-export default function SillyAppBar() {
+export default function SillyAppBar({onRefreshButtonPressed}) {
 
     const [state, setState] = useState(false);
     const [scan, setScanned] = useState();
@@ -23,7 +24,9 @@ export default function SillyAppBar() {
             if (scan == undefined) return
 
             console.log(`Writing ${scan.d.length} match data(s)`)
-            for (const matchData in scan.d) {
+            for (let i = 0; i < scan.d.length; ++i) {
+                let matchData = scan.d[i]
+                console.log(matchData)
                 const response = await axios.put("http://localhost:7070/matches/", matchData)
                     .then(response => {
                         console.log(`Success: ${response.status}`)
@@ -68,7 +71,16 @@ export default function SillyAppBar() {
                     <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                         Buzz Scouting App (Hi Silly)
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <IconButton
+                        size="large"
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        sx={{ mr: 2 }}
+                        onClick={onRefreshButtonPressed}
+                    >
+                        <CachedIcon />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
         </Box>

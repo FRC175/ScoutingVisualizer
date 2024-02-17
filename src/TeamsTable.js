@@ -113,16 +113,21 @@ const rows = [
   { id: 2195, teamName: 'Advance Sea Anemone', rankingPoints: 23, averageScore: 91.7, offensivePowerRanking: 1.32, defensivePowerRanking: 12.03, averageAutoScore: 20.18, elo: 510.22, teamBasedPowerRanking: 337.64200, carried: 0.78 },
 ];
 
-export default function TeamsTable({onTeamSelected}) {  
+export default function TeamsTable({tableData, onTeamSelected}) {  
+
   const handleRowClick = (params, event, details) => {
     onTeamSelected(params.row.id);
   }
+
+  React.useEffect(() => {
+    console.log("re-rendering table")
+  }, [])
 
   return (
     <>
       <Box sx={{height: '100%', width: '100%'}}>
         <DataGrid
-          rows={rows}
+          rows={(tableData && tableData.length != 0) ? tableData : rows}
           columns={columns}
           sx={{
             // boxShadow: 20,

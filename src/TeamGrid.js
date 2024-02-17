@@ -3,7 +3,6 @@ import { ListItem, Typography, Paper, List, Box } from '@mui/material';
 import MatchDetail from './MatchDetail';
 
 const TeamGrid = ({ teamNum }) => {
-
     const matches = [
         {matchNum: 1, scoreRed: 50, scoreBlue: 110,  teamsRed: [175, 189, 230], teamsBlue: [1, 189, 230]},
         {matchNum: 10, scoreRed: 150, scoreBlue: 90, teamsRed: [900, 189, 230], teamsBlue: [175, 189, 230]},
