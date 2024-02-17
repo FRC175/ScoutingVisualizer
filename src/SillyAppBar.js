@@ -20,19 +20,22 @@ export default function SillyAppBar() {
 
     useEffect(() => {
         const putMatches = async () => {
-            for (matchData in scan.d) {
+            if (scan == undefined) return
+
+            console.log(`Writing ${scan.d.length} match data(s)`)
+            for (const matchData in scan.d) {
                 const response = await axios.put("http://localhost:7070/matches/", matchData)
                     .then(response => {
                         console.log(`Success: ${response.status}`)
                     })
                     .catch(error => {
-                        console.log(`Error: ${response.status}`)
+                        console.log(`Error: ${error.status}`)
                     });
-                putMatches()
-                    .catch(e => console.log(e))
             }
         }
-    }, []);
+        putMatches()
+            .catch(e => console.log(e))
+    }, [scan]);
     
     const toggleDrawer = (open) => (event) => {
         if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
