@@ -19,15 +19,19 @@ export default function SillyAppBar() {
     const [scan, setScanned] = useState();
 
     useEffect(() => {
-        console.log("Hit PUT endpoint")
-        axios
-        .put("http://localhost:7070/match", scan)
-        .then(response => {
-            // Handle the response
-        })
-        .catch(error => {
-            // Handle errors
-        });
+        const putMatches = async () => {
+            for (matchData in scan.d) {
+                const response = await axios.put("http://localhost:7070/matches/", matchData)
+                    .then(response => {
+                        console.log(`Success: ${response.status}`)
+                    })
+                    .catch(error => {
+                        console.log(`Error: ${response.status}`)
+                    });
+                putMatches()
+                    .catch(e => console.log(e))
+            }
+        }
     }, []);
     
     const toggleDrawer = (open) => (event) => {
