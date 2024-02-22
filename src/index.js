@@ -44,11 +44,11 @@ const themeDark = createTheme({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    {/* <Helmet>
+    <Helmet>
      <style>{'body { background-color: #222222; }'}</style>
-    </Helmet> */}
-    {/* <ThemeProvider theme={themeDark}> */}
+    </Helmet>
+    <ThemeProvider theme={themeDark}>
       <App />
-    {/* </ThemeProvider> */}
+    </ThemeProvider>
   </React.StrictMode>
 );

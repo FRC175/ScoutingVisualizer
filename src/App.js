@@ -40,7 +40,7 @@ export default function App() {
     await axios.get("http://localhost:7070/team-data/")
         .then(response => {
             console.log(`Success: ${response.status}`)
-            // console.log(response.data)
+            console.log(response.data)
             setTableData(response.data)
         })
         .catch(error => {
@@ -53,18 +53,18 @@ export default function App() {
       <SillyAppBar onRefreshButtonPressed={refreshTableData}/>
       <Box>
         <Grid2 container spacing={0}>
-          <Grid2 item xs={12} md={9}>
+          <Grid2 item xs={12}>
             <Item>
-              <TeamsTable data={tableData} onTeamSelected={updateSelectedTeam}/>
+              <TeamsTable tableData={tableData} onTeamSelected={updateSelectedTeam}/>
             </Item>
           </Grid2>
-          <Grid2 item xs={12} md={3}>
+          {/* <Grid2 item xs={12} md={3}>
             <Item>
               <Box style={{maxHeight: '98vh', overflow: 'auto'}}>
                 <TeamGrid teamNum={selectedTeamNum}/>
               </Box>
             </Item>
-          </Grid2>
+          </Grid2> */}
         </Grid2>
       </Box>
     </div>
